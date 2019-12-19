@@ -1,0 +1,49 @@
+{
+    "name": "Robinhood",
+    "description": "Robinhood Markets Inc., or simply Robinhood, is a US-based financial services company headquartered in Menlo Park, California.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28226-robinhood.jpg",
+    "tags": [
+        "financial",
+        "financial services",
+        "have api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/robinhood\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Robinhood",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28226-robinhood.jpg",
+            "humanURL": "https:\/\/robinhood.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/robinhood-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/analyst"
+        },
+        {
+            "type": "Email",
+            "url": "support@robinhood.com"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/RobinhoodApp"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/robinhood.com"
+        }
+    ]
+}
