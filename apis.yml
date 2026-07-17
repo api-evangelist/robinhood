@@ -1,0 +1,39 @@
+aid: robinhood
+name: Robinhood
+description: 'Robinhood is a company surfaced as a portfolio company of a16z, bond-capital, d1-capital,
+  gv, iconiq-capital, ivp, kleiner-perkins, nea, ribbit-capital, slow-ventures, susa-ventures, thrive-capital
+  and added to the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a
+  lead awaiting the enrichment pipeline.'
+url: https://raw.githubusercontent.com/api-evangelist/robinhood/refs/heads/main/apis.yml
+x-type: company
+x-source: vc-portfolio
+x-backed-by:
+- a16z
+- bond-capital
+- d1-capital
+- gv
+- iconiq-capital
+- ivp
+- kleiner-perkins
+- nea
+- ribbit-capital
+- slow-ventures
+- susa-ventures
+- thrive-capital
+x-tier: stub
+x-tier-reason: portfolio-lead
+specificationVersion: '0.20'
+created: '2026-07-17'
+modified: '2026-07-17'
+tags:
+- Company
+- Fintech
+apis: []
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+- FN: APIs.json
+  email: info@apis.io
+common:
+- type: Website
+  url: https://robinhood.com
