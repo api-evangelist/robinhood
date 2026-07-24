@@ -1,0 +1,360 @@
+openapi: 3.1.0
+info:
+  title: Robinhood Crypto Trading Account Orders API
+  version: v1
+  description: 'The Robinhood Crypto Trading API lets developers programmatically access their own Robinhood Crypto account: view buying power and holdings, pull market data (best bid/ask and estimated fill prices), enumerate supported trading pairs, and place, retrieve, and cancel cryptocurrency orders (market, limit, stop-loss, and stop-limit). Requests are authenticated per-request with an API key plus an Ed25519 request signature over the API key, UNIX timestamp, request path, method, and body, supplied in the x-api-key, x-timestamp, and x-signature headers.'
+  contact:
+    name: Robinhood API Support
+    url: https://docs.robinhood.com/crypto/trading/
+  termsOfService: https://robinhood.com/us/en/support/articles/crypto-api-agreement/
+servers:
+- url: https://trading.robinhood.com
+  description: Production
+security:
+- ApiKeyAuth: []
+  ApiTimestamp: []
+  ApiSignature: []
+tags:
+- name: Orders
+  description: Place, list, retrieve, and cancel crypto orders.
+paths:
+  /api/v1/crypto/trading/orders/:
+    get:
+      operationId: getOrders
+      summary: List orders
+      description: Returns the authenticated user's crypto orders, filterable by symbol, side, state, type, and creation time.
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: side
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - buy
+          - sell
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - open
+          - canceled
+          - partially_filled
+          - filled
+          - failed
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - market
+          - limit
+          - stop_loss
+          - stop_limit
+      - name: created_at_start
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: created_at_end
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated orders.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderList'
+        '400':
+          $ref: '#/components/responses/MissingHeaders'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    post:
+      operationId: placeOrder
+      summary: Place order
+      description: Places a crypto order. Supply a unique client_order_id (idempotency key), the side, symbol, and the order type with its matching configuration object (market/limit/stop-loss/stop-limit).
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/MissingHeaders'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /api/v1/crypto/trading/orders/{id}/:
+    get:
+      operationId: getOrder
+      summary: Get order
+      description: Returns a single crypto order by its identifier.
+      tags:
+      - Orders
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/MissingHeaders'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /api/v1/crypto/trading/orders/{id}/cancel/:
+    post:
+      operationId: cancelOrder
+      summary: Cancel order
+      description: Requests cancellation of an open crypto order by its identifier.
+      tags:
+      - Orders
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Cancellation requested.
+        '400':
+          $ref: '#/components/responses/MissingHeaders'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  responses:
+    RateLimited:
+      description: Too many requests.
+    Unauthorized:
+      description: Invalid or expired credentials / signature.
+    NotFound:
+      description: Resource not found.
+    MissingHeaders:
+      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
+  schemas:
+    MarketOrderConfig:
+      type: object
+      properties:
+        asset_quantity:
+          type: string
+    Execution:
+      type: object
+      properties:
+        effective_price:
+          type: string
+        quantity:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    StopLimitOrderConfig:
+      type: object
+      properties:
+        asset_quantity:
+          type: string
+        quote_amount:
+          type: string
+        limit_price:
+          type: string
+        stop_price:
+          type: string
+        time_in_force:
+          type: string
+          enum:
+          - gtc
+    OrderRequest:
+      type: object
+      required:
+      - client_order_id
+      - side
+      - type
+      - symbol
+      properties:
+        client_order_id:
+          type: string
+          format: uuid
+          description: Client-supplied idempotency key; a repeat with the same value returns the original order.
+        side:
+          type: string
+          enum:
+          - buy
+          - sell
+        type:
+          type: string
+          enum:
+          - market
+          - limit
+          - stop_loss
+          - stop_limit
+        symbol:
+          type: string
+          example: BTC-USD
+        market_order_config:
+          $ref: '#/components/schemas/MarketOrderConfig'
+        limit_order_config:
+          $ref: '#/components/schemas/LimitOrderConfig'
+        stop_loss_order_config:
+          $ref: '#/components/schemas/StopLossOrderConfig'
+        stop_limit_order_config:
+          $ref: '#/components/schemas/StopLimitOrderConfig'
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        account_number:
+          type: string
+        symbol:
+          type: string
+        client_order_id:
+          type: string
+          format: uuid
+        side:
+          type: string
+          enum:
+          - buy
+          - sell
+        type:
+          type: string
+          enum:
+          - market
+          - limit
+          - stop_loss
+          - stop_limit
+        state:
+          type: string
+          enum:
+          - open
+          - canceled
+          - partially_filled
+          - filled
+          - failed
+        average_price:
+          type: string
+          nullable: true
+        filled_asset_quantity:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        executions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Execution'
+    StopLossOrderConfig:
+      type: object
+      properties:
+        asset_quantity:
+          type: string
+        quote_amount:
+          type: string
+        stop_price:
+          type: string
+        time_in_force:
+          type: string
+          enum:
+          - gtc
+    OrderList:
+      type: object
+      properties:
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    LimitOrderConfig:
+      type: object
+      properties:
+        asset_quantity:
+          type: string
+        quote_amount:
+          type: string
+        limit_price:
+          type: string
+        time_in_force:
+          type: string
+          enum:
+          - gtc
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: The API key issued in the Robinhood API Credentials Portal.
+    ApiTimestamp:
+      type: apiKey
+      in: header
+      name: x-timestamp
+      description: Current UNIX timestamp (seconds) included in the signed message.
+    ApiSignature:
+      type: apiKey
+      in: header
+      name: x-signature
+      description: Base64 Ed25519 signature over api_key + timestamp + path + method + body.

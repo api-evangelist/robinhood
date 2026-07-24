@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: Robinhood Crypto Trading Account Market Data API
+  version: v1
+  description: 'The Robinhood Crypto Trading API lets developers programmatically access their own Robinhood Crypto account: view buying power and holdings, pull market data (best bid/ask and estimated fill prices), enumerate supported trading pairs, and place, retrieve, and cancel cryptocurrency orders (market, limit, stop-loss, and stop-limit). Requests are authenticated per-request with an API key plus an Ed25519 request signature over the API key, UNIX timestamp, request path, method, and body, supplied in the x-api-key, x-timestamp, and x-signature headers.'
+  contact:
+    name: Robinhood API Support
+    url: https://docs.robinhood.com/crypto/trading/
+  termsOfService: https://robinhood.com/us/en/support/articles/crypto-api-agreement/
+servers:
+- url: https://trading.robinhood.com
+  description: Production
+security:
+- ApiKeyAuth: []
+  ApiTimestamp: []
+  ApiSignature: []
+tags:
+- name: Market Data
+  description: Best bid/ask quotes and estimated execution prices.
+paths:
+  /api/v1/crypto/marketdata/best_bid_ask/:
+    get:
+      operationId: getBestBidAsk
+      summary: Get best bid and ask
+      description: Returns the current best bid and ask prices for one or more symbols.
+      tags:
+      - Market Data
+      parameters:
+      - name: symbol
+        in: query
+        description: Trading pair symbol, e.g. BTC-USD. Repeat the parameter to request multiple symbols.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        example: BTC-USD
+      responses:
+        '200':
+          description: Best bid/ask results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BestBidAskList'
+        '400':
+          $ref: '#/components/responses/MissingHeaders'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /api/v1/crypto/marketdata/estimated_price/:
+    get:
+      operationId: getEstimatedPrice
+      summary: Get estimated price
+      description: Returns the estimated execution price for a symbol, side, and quantity.
+      tags:
+      - Market Data
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+        example: BTC-USD
+      - name: side
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - bid
+          - ask
+          - both
+      - name: quantity
+        in: query
+        description: One or more quantities to estimate, comma-separated.
+        required: true
+        schema:
+          type: string
+        example: 0.1,1,5
+      responses:
+        '200':
+          description: Estimated price results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimatedPriceList'
+        '400':
+          $ref: '#/components/responses/MissingHeaders'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  responses:
+    RateLimited:
+      description: Too many requests.
+    Unauthorized:
+      description: Invalid or expired credentials / signature.
+    MissingHeaders:
+      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
+  schemas:
+    EstimatedPriceList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/EstimatedPrice'
+    BestBidAskList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Quote'
+    Quote:
+      type: object
+      properties:
+        symbol:
+          type: string
+        price:
+          type: string
+        bid_inclusive_of_sell_spread:
+          type: string
+        sell_spread:
+          type: string
+        ask_inclusive_of_buy_spread:
+          type: string
+        buy_spread:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    EstimatedPrice:
+      type: object
+      properties:
+        symbol:
+          type: string
+        side:
+          type: string
+        price:
+          type: string
+        quantity:
+          type: string
+        bid_inclusive_of_sell_spread:
+          type: string
+        ask_inclusive_of_buy_spread:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: The API key issued in the Robinhood API Credentials Portal.
+    ApiTimestamp:
+      type: apiKey
+      in: header
+      name: x-timestamp
+      description: Current UNIX timestamp (seconds) included in the signed message.
+    ApiSignature:
+      type: apiKey
+      in: header
+      name: x-signature
+      description: Base64 Ed25519 signature over api_key + timestamp + path + method + body.

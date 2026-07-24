@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  title: Robinhood Crypto Trading Account API
+  version: v1
+  description: 'The Robinhood Crypto Trading API lets developers programmatically access their own Robinhood Crypto account: view buying power and holdings, pull market data (best bid/ask and estimated fill prices), enumerate supported trading pairs, and place, retrieve, and cancel cryptocurrency orders (market, limit, stop-loss, and stop-limit). Requests are authenticated per-request with an API key plus an Ed25519 request signature over the API key, UNIX timestamp, request path, method, and body, supplied in the x-api-key, x-timestamp, and x-signature headers.'
+  contact:
+    name: Robinhood API Support
+    url: https://docs.robinhood.com/crypto/trading/
+  termsOfService: https://robinhood.com/us/en/support/articles/crypto-api-agreement/
+servers:
+- url: https://trading.robinhood.com
+  description: Production
+security:
+- ApiKeyAuth: []
+  ApiTimestamp: []
+  ApiSignature: []
+tags:
+- name: Account
+  description: Crypto trading account details and buying power.
+paths:
+  /api/v1/crypto/trading/accounts/:
+    get:
+      operationId: getCryptoTradingAccount
+      summary: Get crypto trading account
+      description: Returns the authenticated user's crypto trading account, including account number and status.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: The crypto trading account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '400':
+          $ref: '#/components/responses/MissingHeaders'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  responses:
+    Unauthorized:
+      description: Invalid or expired credentials / signature.
+    RateLimited:
+      description: Too many requests.
+    MissingHeaders:
+      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
+  schemas:
+    Account:
+      type: object
+      properties:
+        account_number:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - deactivated
+          - sell_only
+        buying_power:
+          type: string
+        buying_power_currency:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: The API key issued in the Robinhood API Credentials Portal.
+    ApiTimestamp:
+      type: apiKey
+      in: header
+      name: x-timestamp
+      description: Current UNIX timestamp (seconds) included in the signed message.
+    ApiSignature:
+      type: apiKey
+      in: header
+      name: x-signature
+      description: Base64 Ed25519 signature over api_key + timestamp + path + method + body.

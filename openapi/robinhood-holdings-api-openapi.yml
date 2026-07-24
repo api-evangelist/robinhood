@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: Robinhood Crypto Trading Account Holdings API
+  version: v1
+  description: 'The Robinhood Crypto Trading API lets developers programmatically access their own Robinhood Crypto account: view buying power and holdings, pull market data (best bid/ask and estimated fill prices), enumerate supported trading pairs, and place, retrieve, and cancel cryptocurrency orders (market, limit, stop-loss, and stop-limit). Requests are authenticated per-request with an API key plus an Ed25519 request signature over the API key, UNIX timestamp, request path, method, and body, supplied in the x-api-key, x-timestamp, and x-signature headers.'
+  contact:
+    name: Robinhood API Support
+    url: https://docs.robinhood.com/crypto/trading/
+  termsOfService: https://robinhood.com/us/en/support/articles/crypto-api-agreement/
+servers:
+- url: https://trading.robinhood.com
+  description: Production
+security:
+- ApiKeyAuth: []
+  ApiTimestamp: []
+  ApiSignature: []
+tags:
+- name: Holdings
+  description: Current cryptocurrency positions.
+paths:
+  /api/v1/crypto/trading/holdings/:
+    get:
+      operationId: getHoldings
+      summary: Get holdings
+      description: Returns the authenticated user's cryptocurrency holdings.
+      tags:
+      - Holdings
+      parameters:
+      - name: asset_code
+        in: query
+        description: Filter to specific asset codes, e.g. BTC. Repeat to request multiple.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated holdings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HoldingList'
+        '400':
+          $ref: '#/components/responses/MissingHeaders'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  responses:
+    RateLimited:
+      description: Too many requests.
+    Unauthorized:
+      description: Invalid or expired credentials / signature.
+    MissingHeaders:
+      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
+  schemas:
+    HoldingList:
+      type: object
+      properties:
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Holding'
+    Holding:
+      type: object
+      properties:
+        account_number:
+          type: string
+        asset_code:
+          type: string
+        total_quantity:
+          type: string
+        quantity_available_for_trading:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: The API key issued in the Robinhood API Credentials Portal.
+    ApiTimestamp:
+      type: apiKey
+      in: header
+      name: x-timestamp
+      description: Current UNIX timestamp (seconds) included in the signed message.
+    ApiSignature:
+      type: apiKey
+      in: header
+      name: x-signature
+      description: Base64 Ed25519 signature over api_key + timestamp + path + method + body.
