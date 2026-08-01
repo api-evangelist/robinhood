@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/robinhood-crypto-trading-openapi.yml
+api: Robinhood Crypto Trading API
+entities:
+  - name: Account
+    key: account_number
+    fields: [account_number, status, buying_power, buying_power_currency]
+  - name: TradingPair
+    key: symbol
+    fields: [symbol, asset_code, quote_code, quote_increment, asset_increment, max_order_size, min_order_size, status]
+  - name: Holding
+    key: asset_code
+    fields: [account_number, asset_code, total_quantity, quantity_available_for_trading]
+  - name: Order
+    key: id
+    fields: [id, account_number, symbol, client_order_id, side, type, state, average_price, filled_asset_quantity, created_at, updated_at]
+  - name: Execution
+    fields: [effective_price, quantity, timestamp]
+  - name: Quote
+    fields: [symbol, price, bid_inclusive_of_sell_spread, ask_inclusive_of_buy_spread, timestamp]
+relationships:
+  - from: Order
+    to: Account
+    type: belongs_to
+    via: account_number
+  - from: Order
+    to: TradingPair
+    type: belongs_to
+    via: symbol
+  - from: Order
+    to: Execution
+    type: has_many
+    via: executions
+  - from: Holding
+    to: Account
+    type: belongs_to
+    via: account_number
+  - from: Holding
+    to: TradingPair
+    type: belongs_to
+    via: asset_code

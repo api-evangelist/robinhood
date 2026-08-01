@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.robinhood.com/crypto/trading/ + https://status.robinhood.com
+api: Robinhood Crypto Trading API
+versioning:
+  scheme: uri-path
+  current: v1
+  base: https://trading.robinhood.com/api/v1/crypto/
+  docs: https://docs.robinhood.com/crypto/trading/
+status_page: https://status.robinhood.com
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No public deprecation policy or RFC 8594 Sunset/Deprecation header support was found.
+sla:
+  url: null
+deprecated_operations: []

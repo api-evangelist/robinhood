@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/robinhood-crypto-trading-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: The API key issued in the Robinhood API Credentials Portal.
+  sources:
+  - openapi/robinhood-crypto-trading-openapi.yml
+- name: ApiTimestamp
+  type: apiKey
+  in: header
+  parameter: x-timestamp
+  description: Current UNIX timestamp (seconds) included in the signed message.
+  sources:
+  - openapi/robinhood-crypto-trading-openapi.yml
+- name: ApiSignature
+  type: apiKey
+  in: header
+  parameter: x-signature
+  description: Base64 Ed25519 signature over api_key + timestamp + path + method + body.
+  sources:
+  - openapi/robinhood-crypto-trading-openapi.yml

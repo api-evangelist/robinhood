@@ -1,0 +1,22 @@
+{
+  "provider": "robinhood",
+  "sources": [
+    "robinhood-account-api-openapi.yml",
+    "robinhood-holdings-api-openapi.yml",
+    "robinhood-market-data-api-openapi.yml",
+    "robinhood-orders-api-openapi.yml",
+    "robinhood-trading-pairs-api-openapi.yml"
+  ],
+  "outputs": [
+    "robinhood-account-api-openapi.yml",
+    "robinhood-holdings-api-openapi.yml",
+    "robinhood-market-data-api-openapi.yml",
+    "robinhood-orders-api-openapi.yml",
+    "robinhood-trading-pairs-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

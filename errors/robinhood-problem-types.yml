@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/robinhood-crypto-trading-openapi.yml + live probe 2026-07-21
+format: http-status
+note: >-
+  The Robinhood Crypto Trading API does not publish an RFC 9457 problem+json catalog. Errors are returned
+  as HTTP status codes; the missing-headers case returns a plain-text message (verified by live probe).
+problems:
+  - status: 400
+    title: Bad request / missing required headers
+    detail: >-
+      Returned when required auth headers are absent. Verified body: "Request missing required headers.
+      Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more
+      information." Also returned for malformed request parameters or bodies.
+    remediation: Supply valid x-api-key, x-timestamp, and x-signature headers and a well-formed request.
+    evidence: live probe of https://trading.robinhood.com/api/v1/crypto/trading/accounts/
+  - status: 401
+    title: Unauthorized
+    detail: Invalid, expired, or mismatched API key / request signature.
+    remediation: Regenerate credentials in the API Credentials Portal and recompute the Ed25519 signature.
+  - status: 404
+    title: Not found
+    detail: Referenced resource (e.g. an order id) does not exist.
+    source_operation: openapi/robinhood-crypto-trading-openapi.yml#getOrder
+  - status: 429
+    title: Too many requests
+    detail: Rate limit exceeded.
+    remediation: Back off and retry; reduce request frequency.

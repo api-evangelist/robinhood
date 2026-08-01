@@ -1,0 +1,31 @@
+# Robinhood
+
+> Robinhood Markets offers commission-free trading of stocks, ETFs, options, and cryptocurrency. For developers, Robinhood publishes the Crypto Trading API — a REST interface at trading.robinhood.com for programmatic access to a user's own Robinhood Crypto account. Each request is authenticated with an API key plus an Ed25519 request signature (x-api-key, x-timestamp, x-signature headers).
+
+## APIs
+
+- [Robinhood Crypto Trading API](https://docs.robinhood.com/crypto/trading/): Account, market data, trading pairs, holdings, and crypto order management. Base URL https://trading.robinhood.com.
+
+## Specs
+
+- [OpenAPI (Crypto Trading)](https://raw.githubusercontent.com/api-evangelist/robinhood/refs/heads/main/openapi/robinhood-crypto-trading-openapi.yml)
+
+## Operations
+
+- getCryptoTradingAccount — GET /api/v1/crypto/trading/accounts/
+- getBestBidAsk — GET /api/v1/crypto/marketdata/best_bid_ask/
+- getEstimatedPrice — GET /api/v1/crypto/marketdata/estimated_price/
+- getTradingPairs — GET /api/v1/crypto/trading/trading_pairs/
+- getHoldings — GET /api/v1/crypto/trading/holdings/
+- getOrders — GET /api/v1/crypto/trading/orders/
+- placeOrder — POST /api/v1/crypto/trading/orders/
+- getOrder — GET /api/v1/crypto/trading/orders/{id}/
+- cancelOrder — POST /api/v1/crypto/trading/orders/{id}/cancel/
+
+## Docs
+
+- [Crypto Trading API docs](https://docs.robinhood.com/crypto/trading/)
+- [Support](https://robinhood.com/us/en/support/)
+- [Status](https://status.robinhood.com)
+- [Security policy (HackerOne)](https://hackerone.com/robinhood)
+- [Newsroom / Blog](https://newsroom.aboutrobinhood.com/)

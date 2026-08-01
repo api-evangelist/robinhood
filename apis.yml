@@ -1,9 +1,14 @@
 aid: robinhood
 name: Robinhood
-description: 'Robinhood is a company surfaced as a portfolio company of a16z, bond-capital, d1-capital,
-  gv, iconiq-capital, ivp, kleiner-perkins, nea, ribbit-capital, slow-ventures, susa-ventures, thrive-capital
-  and added to the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a
-  lead awaiting the enrichment pipeline.'
+description: >-
+  Robinhood Markets is a US financial-services company offering commission-free trading of stocks, ETFs,
+  options, and cryptocurrency, plus retirement accounts, a cash/spending card, and 24-hour markets. For
+  developers, Robinhood publishes the Crypto Trading API, a REST interface at trading.robinhood.com that
+  lets an account holder view buying power and holdings, pull market data (best bid/ask and estimated fill
+  prices), enumerate supported trading pairs, and place, retrieve, and cancel crypto orders (market, limit,
+  stop-loss, and stop-limit). The API authenticates each request with an API key plus an Ed25519 request
+  signature carried in the x-api-key, x-timestamp, and x-signature headers. Robinhood was added to the API
+  Evangelist network as a VC-portfolio lead and enriched from its public developer surface.
 url: https://raw.githubusercontent.com/api-evangelist/robinhood/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -22,18 +27,156 @@ x-backed-by:
 - thrive-capital
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v1
+image: https://robinhood.com/favicon.ico
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Fintech
-apis: []
+- Cryptocurrency
+- Trading
+- Brokerage
+- Investing
+- Financial Services
+- Crypto
+apis:
+- aid: robinhood:robinhood-account-api
+  name: Robinhood Account API
+  description: Crypto trading account details and buying power.
+  humanURL: https://docs.robinhood.com/crypto/trading/
+  baseURL: https://trading.robinhood.com
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/robinhood-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.robinhood.com/crypto/trading/
+- aid: robinhood:robinhood-holdings-api
+  name: Robinhood Holdings API
+  description: Current cryptocurrency positions.
+  humanURL: https://docs.robinhood.com/crypto/trading/
+  baseURL: https://trading.robinhood.com
+  tags:
+  - Holdings
+  properties:
+  - type: OpenAPI
+    url: openapi/robinhood-holdings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.robinhood.com/crypto/trading/
+- aid: robinhood:robinhood-market-data-api
+  name: Robinhood Market Data API
+  description: Best bid/ask quotes and estimated execution prices.
+  humanURL: https://docs.robinhood.com/crypto/trading/
+  baseURL: https://trading.robinhood.com
+  tags:
+  - Market Data
+  properties:
+  - type: OpenAPI
+    url: openapi/robinhood-market-data-api-openapi.yml
+  - type: Documentation
+    url: https://docs.robinhood.com/crypto/trading/
+- aid: robinhood:robinhood-orders-api
+  name: Robinhood Orders API
+  description: Place, list, retrieve, and cancel crypto orders.
+  humanURL: https://docs.robinhood.com/crypto/trading/
+  baseURL: https://trading.robinhood.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/robinhood-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.robinhood.com/crypto/trading/
+- aid: robinhood:robinhood-trading-pairs-api
+  name: Robinhood Trading Pairs API
+  description: Supported crypto trading pairs and their constraints.
+  humanURL: https://docs.robinhood.com/crypto/trading/
+  baseURL: https://trading.robinhood.com
+  tags:
+  - Trading Pairs
+  properties:
+  - type: OpenAPI
+    url: openapi/robinhood-trading-pairs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.robinhood.com/crypto/trading/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: VulnerabilityDisclosure
+  url: security/robinhood-vulnerability-disclosure.yml
+- type: Security
+  url: https://hackerone.com/robinhood
+- type: DomainSecurity
+  url: security/robinhood-domain-security.yml
 - type: Website
   url: https://robinhood.com
+- type: DeveloperPortal
+  url: https://docs.robinhood.com/crypto/trading/
+- type: Documentation
+  url: https://docs.robinhood.com/crypto/trading/
+- type: APIReference
+  url: https://docs.robinhood.com/crypto/trading/
+- type: GettingStarted
+  url: https://docs.robinhood.com/crypto/trading/
+- type: Support
+  url: https://robinhood.com/us/en/support/
+- type: StatusPage
+  url: https://status.robinhood.com
+- type: Blog
+  url: https://newsroom.aboutrobinhood.com/
+- type: GitHubOrganization
+  url: https://github.com/robinhoodmarkets
+- type: TermsOfService
+  url: https://robinhood.com/us/en/about/legal/
+- type: PrivacyPolicy
+  url: https://robinhood.com/us/en/about/legal/
+- type: Authentication
+  url: authentication/robinhood-authentication.yml
+- type: Conventions
+  url: conventions/robinhood-conventions.yml
+- type: Idempotency
+  url: conventions/robinhood-conventions.yml
+- type: ErrorCatalog
+  url: errors/robinhood-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/robinhood-lifecycle.yml
+- type: WellKnown
+  url: well-known/robinhood-well-known.yml
+- type: SecurityTxt
+  url: well-known/robinhood-security.txt
+- type: MCPServer
+  url: mcp/robinhood-mcp.yml
+- type: LLMsTxt
+  url: llms/robinhood-llms.txt
+- type: Overlay
+  url: overlays/robinhood-crypto-trading-overlay.yaml
+- type: Conformance
+  url: conformance/robinhood-conformance.yml
+- type: DataModel
+  url: data-model/robinhood-data-model.yml
+- type: AgenticAccess
+  url: agentic-access/robinhood-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml

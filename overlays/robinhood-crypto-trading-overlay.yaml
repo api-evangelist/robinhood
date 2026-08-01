@@ -1,0 +1,19 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Robinhood Crypto Trading API
+  version: 1.0.0
+extends: openapi/robinhood-crypto-trading-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-21'
+      x-authentication-style: api-key + Ed25519 request signature
+      x-idempotency: client_order_id on placeOrder
+      x-status-page: https://status.robinhood.com
+  - target: $.paths['/api/v1/crypto/trading/orders/'].post
+    update:
+      x-idempotent: true
+      x-idempotency-key: client_order_id
+  - target: $.components.securitySchemes
+    update:
+      x-signature-message: api_key + x-timestamp + path + method + body (Ed25519, base64)

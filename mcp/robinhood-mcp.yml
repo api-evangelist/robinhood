@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/robinhood-crypto-trading-openapi.yml
+note: >-
+  No official hosted/remote Robinhood MCP server was found (checked docs, the robinhood and robinhoodmarkets
+  GitHub orgs, and the @modelcontextprotocol namespace). This is a candidate tool set derived one-to-one from
+  the Crypto Trading API operations.
+server:
+  name: robinhood-crypto-trading
+  transport: stdio
+tools:
+  - name: get_crypto_trading_account
+    description: Get the authenticated user's crypto trading account and buying power.
+    source_operation: openapi/robinhood-crypto-trading-openapi.yml#getCryptoTradingAccount
+  - name: get_best_bid_ask
+    description: Get best bid/ask quotes for one or more symbols.
+    source_operation: openapi/robinhood-crypto-trading-openapi.yml#getBestBidAsk
+  - name: get_estimated_price
+    description: Get estimated execution price for a symbol, side, and quantity.
+    source_operation: openapi/robinhood-crypto-trading-openapi.yml#getEstimatedPrice
+  - name: get_trading_pairs
+    description: List supported crypto trading pairs and their constraints.
+    source_operation: openapi/robinhood-crypto-trading-openapi.yml#getTradingPairs
+  - name: get_holdings
+    description: List the user's cryptocurrency holdings.
+    source_operation: openapi/robinhood-crypto-trading-openapi.yml#getHoldings
+  - name: list_orders
+    description: List crypto orders with optional filters.
+    source_operation: openapi/robinhood-crypto-trading-openapi.yml#getOrders
+  - name: place_order
+    description: Place a crypto order (market/limit/stop-loss/stop-limit).
+    source_operation: openapi/robinhood-crypto-trading-openapi.yml#placeOrder
+  - name: get_order
+    description: Retrieve a single crypto order by id.
+    source_operation: openapi/robinhood-crypto-trading-openapi.yml#getOrder
+  - name: cancel_order
+    description: Cancel an open crypto order by id.
+    source_operation: openapi/robinhood-crypto-trading-openapi.yml#cancelOrder

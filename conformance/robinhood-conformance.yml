@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/robinhood-crypto-trading-openapi.yml + live probe 2026-07-21
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: API uses per-request API key + Ed25519 signature, not OAuth2.
+  - id: oidc
+    conforms: false
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: https://robinhood.com/.well-known/security.txt present (HTTP 200, HackerOne policy).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors returned as HTTP status + plain text, not application/problem+json.
+  - id: ed25519-request-signing
+    conforms: true
+    evidence: Requests signed with Ed25519 over api_key + timestamp + path + method + body.
+  - id: cursor-pagination
+    conforms: true
+    evidence: List endpoints return next/previous cursors with results[].
+  - id: idempotency
+    conforms: true
+    evidence: placeOrder accepts a client-supplied client_order_id for safe retries.

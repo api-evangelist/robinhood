@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.robinhood.com/crypto/trading/ + openapi/robinhood-crypto-trading-openapi.yml
+api: Robinhood Crypto Trading API
+conventions:
+  base_url: https://trading.robinhood.com
+  media_type: application/json
+  authentication:
+    style: api-key + request-signature
+    headers:
+      - x-api-key      # API key from the Robinhood API Credentials Portal
+      - x-timestamp    # current UNIX timestamp (seconds), part of the signed message
+      - x-signature    # base64 Ed25519 signature over api_key + timestamp + path + method + body
+    scheme: Ed25519
+    note: >-
+      Each request is signed individually; there is no bearer/session token. The signed message concatenates
+      the API key, the x-timestamp value, the request path, the HTTP method, and the request body.
+    ref: authentication/robinhood-authentication.yml
+  idempotency:
+    supported: true
+    mechanism: client_order_id
+    scope: order placement (POST /api/v1/crypto/trading/orders/)
+    detail: >-
+      Order placement carries a client-supplied client_order_id (UUID). Re-submitting a request with a
+      client_order_id that was already used returns the originally created order rather than placing a
+      duplicate, making order creation safely retryable.
+  pagination:
+    style: cursor
+    request_params: [limit, cursor]
+    response_fields: [next, previous, results]
+    note: List endpoints (trading_pairs, holdings, orders) return next/previous cursors alongside results[].
+  filtering:
+    orders: [symbol, side, state, type, created_at_start, created_at_end]
+    holdings: [asset_code]
+    trading_pairs: [symbol]
+  error_envelope:
+    missing_headers: >-
+      Plain-text message: "Request missing required headers. Required headers: x-api-key, x-signature,
+      x-timestamp." (HTTP 400)
+    ref: errors/robinhood-problem-types.yml
+  versioning:
+    scheme: uri-path
+    current: v1
+    ref: lifecycle/robinhood-lifecycle.yml
+  status_page: https://status.robinhood.com

@@ -1,0 +1,12 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/robinhood-crypto-trading-openapi.yml
+skills:
+  - file: robinhood-place-crypto-order.md
+    name: Place a Robinhood crypto order
+    api: openapi/robinhood-crypto-trading-openapi.yml
+    operations: [getCryptoTradingAccount, getBestBidAsk, getEstimatedPrice, placeOrder, getOrder]
+  - file: robinhood-review-portfolio.md
+    name: Review Robinhood crypto holdings and open orders
+    api: openapi/robinhood-crypto-trading-openapi.yml
+    operations: [getCryptoTradingAccount, getHoldings, getOrders, getBestBidAsk]
