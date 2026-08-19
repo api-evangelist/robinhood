@@ -1,0 +1,364 @@
+{
+  "item": [
+    {
+      "id": "6cb050ec-3a2c-455e-b019-8cba4fdf5a00",
+      "name": "Holdings",
+      "description": {
+        "content": "Current cryptocurrency positions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba1d7783-52e6-4920-b0d9-c0a64687b478",
+          "name": "Get holdings",
+          "request": {
+            "name": "Get holdings",
+            "description": {
+              "content": "Returns the authenticated user's cryptocurrency holdings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "crypto",
+                "trading",
+                "holdings",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asset_code",
+                  "value": "<string>",
+                  "description": "Filter to specific asset codes, e.g. BTC. Repeat to request multiple."
+                },
+                {
+                  "disabled": false,
+                  "key": "asset_code",
+                  "value": "<string>",
+                  "description": "Filter to specific asset codes, e.g. BTC. Repeat to request multiple."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2bb10e52-6849-4ffb-93a6-48d281bb1113",
+              "name": "Paginated holdings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "holdings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asset_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"account_number\": \"string\",\n      \"asset_code\": \"string\",\n      \"total_quantity\": \"string\",\n      \"quantity_available_for_trading\": \"string\"\n    },\n    {\n      \"account_number\": \"string\",\n      \"asset_code\": \"string\",\n      \"total_quantity\": \"string\",\n      \"quantity_available_for_trading\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9525747-5718-4fe7-bb61-cda6a40d453a",
+              "name": "Request missing required headers (x-api-key, x-signature, x-timestamp).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "holdings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asset_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f009b7f6-3342-44d0-a4e0-7c0338f0487a",
+              "name": "Invalid or expired credentials / signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "holdings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asset_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2c611d4f-ef2d-4e7d-9e59-a1bced68a61a",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "holdings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asset_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trading.robinhood.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b65d5ae3-e827-4c7d-8e6e-5fffbf4b807a",
+    "name": "Robinhood Crypto Trading Account Holdings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Robinhood Crypto Trading API lets developers programmatically access their own Robinhood Crypto account: view buying power and holdings, pull market data (best bid/ask and estimated fill prices), enumerate supported trading pairs, and place, retrieve, and cancel cryptocurrency orders (market, limit, stop-loss, and stop-limit). Requests are authenticated per-request with an API key plus an Ed25519 request signature over the API key, UNIX timestamp, request path, method, and body, supplied in the x-api-key, x-timestamp, and x-signature headers.\n\nContact Support:\n Name: Robinhood API Support",
+      "type": "text/plain"
+    }
+  }
+}

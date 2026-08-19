@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robinhood Crypto Trading Account Trading Pairs API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trading Pairs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get trading pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trading.robinhood.com/api/v1/crypto/trading/trading_pairs/",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Filter to specific symbols. Repeat to request multiple."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the crypto trading pairs supported for trading, with min/max order sizes and increments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

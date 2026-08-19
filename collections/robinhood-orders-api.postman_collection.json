@@ -1,0 +1,1361 @@
+{
+  "item": [
+    {
+      "id": "08761fcc-3f97-46bb-80ad-6b0204fb5c8d",
+      "name": "Orders",
+      "description": {
+        "content": "Place, list, retrieve, and cancel crypto orders.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9fc1eb08-ac17-442c-a1ed-86f0e0dc8764",
+          "name": "List orders",
+          "request": {
+            "name": "List orders",
+            "description": {
+              "content": "Returns the authenticated user's crypto orders, filterable by symbol, side, state, type, and creation time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "crypto",
+                "trading",
+                "orders",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_start",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_end",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee45eee8-fe55-42d3-98d1-9df5de67617a",
+              "name": "Paginated orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"eca0fabb-1ad2-833d-7272-799fe03be81c\",\n      \"account_number\": \"string\",\n      \"symbol\": \"string\",\n      \"client_order_id\": \"55e18de2-f75d-5b33-6845-5a49dcc57679\",\n      \"side\": \"buy\",\n      \"type\": \"stop_loss\",\n      \"state\": \"failed\",\n      \"average_price\": \"string\",\n      \"filled_asset_quantity\": \"string\",\n      \"created_at\": \"2021-07-02T15:40:31.855Z\",\n      \"updated_at\": \"1958-12-16T16:13:03.725Z\",\n      \"executions\": [\n        {\n          \"effective_price\": \"string\",\n          \"quantity\": \"string\",\n          \"timestamp\": \"1947-08-23T15:10:29.996Z\"\n        },\n        {\n          \"effective_price\": \"string\",\n          \"quantity\": \"string\",\n          \"timestamp\": \"1961-03-26T03:30:31.786Z\"\n        }\n      ]\n    },\n    {\n      \"id\": \"36100b47-352c-362e-1a61-6037b15daeb8\",\n      \"account_number\": \"string\",\n      \"symbol\": \"string\",\n      \"client_order_id\": \"3a47690f-0d68-0762-1f2d-0731365c3bcc\",\n      \"side\": \"buy\",\n      \"type\": \"stop_limit\",\n      \"state\": \"canceled\",\n      \"average_price\": \"string\",\n      \"filled_asset_quantity\": \"string\",\n      \"created_at\": \"2022-09-13T15:58:55.739Z\",\n      \"updated_at\": \"1948-04-30T10:25:06.647Z\",\n      \"executions\": [\n        {\n          \"effective_price\": \"string\",\n          \"quantity\": \"string\",\n          \"timestamp\": \"1974-09-19T00:28:16.147Z\"\n        },\n        {\n          \"effective_price\": \"string\",\n          \"quantity\": \"string\",\n          \"timestamp\": \"2016-08-19T00:13:03.195Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab474fd8-babb-44c7-9f1a-8a77b5776ca7",
+              "name": "Request missing required headers (x-api-key, x-signature, x-timestamp).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8caa0b99-6f11-4316-b434-d5e74f028281",
+              "name": "Invalid or expired credentials / signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "229281e9-2fa8-4f49-ae7f-0ba6635f6c85",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8963e6f6-7bb4-4a80-8dd1-a10962932c1d",
+          "name": "Place order",
+          "request": {
+            "name": "Place order",
+            "description": {
+              "content": "Places a crypto order. Supply a unique client_order_id (idempotency key), the side, symbol, and the order type with its matching configuration object (market/limit/stop-loss/stop-limit).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "crypto",
+                "trading",
+                "orders",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_order_id\": \"<uuid>\",\n  \"side\": \"<string>\",\n  \"type\": \"<string>\",\n  \"symbol\": \"<string>\",\n  \"market_order_config\": {\n    \"asset_quantity\": \"<string>\"\n  },\n  \"limit_order_config\": {\n    \"asset_quantity\": \"<string>\",\n    \"quote_amount\": \"<string>\",\n    \"limit_price\": \"<string>\",\n    \"time_in_force\": \"<string>\"\n  },\n  \"stop_loss_order_config\": {\n    \"asset_quantity\": \"<string>\",\n    \"quote_amount\": \"<string>\",\n    \"stop_price\": \"<string>\",\n    \"time_in_force\": \"<string>\"\n  },\n  \"stop_limit_order_config\": {\n    \"asset_quantity\": \"<string>\",\n    \"quote_amount\": \"<string>\",\n    \"limit_price\": \"<string>\",\n    \"stop_price\": \"<string>\",\n    \"time_in_force\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eb7e8748-46b0-4fc8-8904-c88471aaa7ea",
+              "name": "The created order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_order_id\": \"<uuid>\",\n  \"side\": \"<string>\",\n  \"type\": \"<string>\",\n  \"symbol\": \"BTC-USD\",\n  \"market_order_config\": {\n    \"asset_quantity\": \"string\"\n  },\n  \"limit_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"limit_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  },\n  \"stop_loss_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"stop_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  },\n  \"stop_limit_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"limit_price\": \"string\",\n    \"stop_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bac70c5f-3e61-7d20-bf3d-dc9a4357be37\",\n  \"account_number\": \"string\",\n  \"symbol\": \"string\",\n  \"client_order_id\": \"9a67d8d2-abd2-a5fd-45ff-c1a9bc8ad669\",\n  \"side\": \"sell\",\n  \"type\": \"limit\",\n  \"state\": \"failed\",\n  \"average_price\": \"string\",\n  \"filled_asset_quantity\": \"string\",\n  \"created_at\": \"1969-06-11T05:08:24.799Z\",\n  \"updated_at\": \"1949-05-13T03:44:46.460Z\",\n  \"executions\": [\n    {\n      \"effective_price\": \"string\",\n      \"quantity\": \"string\",\n      \"timestamp\": \"2010-08-16T23:45:00.041Z\"\n    },\n    {\n      \"effective_price\": \"string\",\n      \"quantity\": \"string\",\n      \"timestamp\": \"1995-03-09T06:41:39.752Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93c9f89c-96e2-4628-a7f8-27c88a313890",
+              "name": "Request missing required headers (x-api-key, x-signature, x-timestamp).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_order_id\": \"<uuid>\",\n  \"side\": \"<string>\",\n  \"type\": \"<string>\",\n  \"symbol\": \"BTC-USD\",\n  \"market_order_config\": {\n    \"asset_quantity\": \"string\"\n  },\n  \"limit_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"limit_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  },\n  \"stop_loss_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"stop_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  },\n  \"stop_limit_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"limit_price\": \"string\",\n    \"stop_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5dd8c0f9-5871-4a8a-b6c6-ef5d0116d0f3",
+              "name": "Invalid or expired credentials / signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_order_id\": \"<uuid>\",\n  \"side\": \"<string>\",\n  \"type\": \"<string>\",\n  \"symbol\": \"BTC-USD\",\n  \"market_order_config\": {\n    \"asset_quantity\": \"string\"\n  },\n  \"limit_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"limit_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  },\n  \"stop_loss_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"stop_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  },\n  \"stop_limit_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"limit_price\": \"string\",\n    \"stop_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7f950dd-879d-4c3c-81e9-69a909eb6ad6",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_order_id\": \"<uuid>\",\n  \"side\": \"<string>\",\n  \"type\": \"<string>\",\n  \"symbol\": \"BTC-USD\",\n  \"market_order_config\": {\n    \"asset_quantity\": \"string\"\n  },\n  \"limit_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"limit_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  },\n  \"stop_loss_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"stop_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  },\n  \"stop_limit_order_config\": {\n    \"asset_quantity\": \"string\",\n    \"quote_amount\": \"string\",\n    \"limit_price\": \"string\",\n    \"stop_price\": \"string\",\n    \"time_in_force\": \"gtc\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dc7097d-5fc6-4d92-97a8-9c4de8367825",
+          "name": "Get order",
+          "request": {
+            "name": "Get order",
+            "description": {
+              "content": "Returns a single crypto order by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "crypto",
+                "trading",
+                "orders",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "510b3dc1-5ac2-4485-9719-469d9bb04d5e",
+              "name": "The order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bac70c5f-3e61-7d20-bf3d-dc9a4357be37\",\n  \"account_number\": \"string\",\n  \"symbol\": \"string\",\n  \"client_order_id\": \"9a67d8d2-abd2-a5fd-45ff-c1a9bc8ad669\",\n  \"side\": \"sell\",\n  \"type\": \"limit\",\n  \"state\": \"failed\",\n  \"average_price\": \"string\",\n  \"filled_asset_quantity\": \"string\",\n  \"created_at\": \"1969-06-11T05:08:24.799Z\",\n  \"updated_at\": \"1949-05-13T03:44:46.460Z\",\n  \"executions\": [\n    {\n      \"effective_price\": \"string\",\n      \"quantity\": \"string\",\n      \"timestamp\": \"2010-08-16T23:45:00.041Z\"\n    },\n    {\n      \"effective_price\": \"string\",\n      \"quantity\": \"string\",\n      \"timestamp\": \"1995-03-09T06:41:39.752Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48febe16-9771-4bdc-82ac-115a19719f97",
+              "name": "Request missing required headers (x-api-key, x-signature, x-timestamp).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "202ea203-503d-45ce-93a4-79bd84957278",
+              "name": "Invalid or expired credentials / signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e56052e7-4422-49dc-8ffc-f7d4cb08a8af",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a537a27d-dc8d-4ab4-b8b1-433cd87f3f6d",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a70edb1b-5ffd-456d-9b1a-b575fa0f08b1",
+          "name": "Cancel order",
+          "request": {
+            "name": "Cancel order",
+            "description": {
+              "content": "Requests cancellation of an open crypto order by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "crypto",
+                "trading",
+                "orders",
+                ":id",
+                "cancel",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9c5c13a-096d-4278-af6b-fcee7fb62c86",
+              "name": "Cancellation requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ":id",
+                    "cancel",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26e3fe96-7dc8-4a7c-a3a7-3c7ff33211c2",
+              "name": "Request missing required headers (x-api-key, x-signature, x-timestamp).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ":id",
+                    "cancel",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "846e58ea-e77f-4d46-802e-8492aa083581",
+              "name": "Invalid or expired credentials / signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ":id",
+                    "cancel",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8eb36ba-796e-4fd5-8439-996e9ea3ee68",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ":id",
+                    "cancel",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62353e17-0905-4f7a-818e-a798925b6b35",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "crypto",
+                    "trading",
+                    "orders",
+                    ":id",
+                    "cancel",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trading.robinhood.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3578eacf-8940-451a-b992-4905ac5f7cf8",
+    "name": "Robinhood Crypto Trading Account Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Robinhood Crypto Trading API lets developers programmatically access their own Robinhood Crypto account: view buying power and holdings, pull market data (best bid/ask and estimated fill prices), enumerate supported trading pairs, and place, retrieve, and cancel cryptocurrency orders (market, limit, stop-loss, and stop-limit). Requests are authenticated per-request with an API key plus an Ed25519 request signature over the API key, UNIX timestamp, request path, method, and body, supplied in the x-api-key, x-timestamp, and x-signature headers.\n\nContact Support:\n Name: Robinhood API Support",
+      "type": "text/plain"
+    }
+  }
+}

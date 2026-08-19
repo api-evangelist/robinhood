@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robinhood Crypto Trading Account Market Data API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get best bid and ask",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trading.robinhood.com/api/v1/crypto/marketdata/best_bid_ask/",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "BTC-USD",
+                "type": "query",
+                "description": "Trading pair symbol, e.g. BTC-USD. Repeat the parameter to request multiple symbols."
+              }
+            ]
+          },
+          "docs": "Returns the current best bid and ask prices for one or more symbols."
+        },
+        {
+          "info": {
+            "name": "Get estimated price",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trading.robinhood.com/api/v1/crypto/marketdata/estimated_price/",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "BTC-USD",
+                "type": "query"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "quantity",
+                "value": "0.1,1,5",
+                "type": "query",
+                "description": "One or more quantities to estimate, comma-separated."
+              }
+            ]
+          },
+          "docs": "Returns the estimated execution price for a symbol, side, and quantity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
