@@ -55,6 +55,15 @@ tags:
 - Trading
 - Brokerage
 - Investing
+- Financial-Services
+- Crypto
+tags_raw:
+- Company
+- Fintech
+- Cryptocurrency
+- Trading
+- Brokerage
+- Investing
 - Financial Services
 - Crypto
 apis:
@@ -100,6 +109,8 @@ apis:
   humanURL: https://docs.robinhood.com/crypto/trading/
   baseURL: https://trading.robinhood.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
