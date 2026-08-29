@@ -147,6 +147,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/robinhood-capability-edges.yml
+  name: Robinhood Business Capability Map
 - type: VulnerabilityDisclosure
   url: security/robinhood-vulnerability-disclosure.yml
 - type: Security
