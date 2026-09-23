@@ -1,11 +1,7 @@
 {
   "provider": "robinhood",
   "sources": [
-    "robinhood-account-api-openapi.yml",
-    "robinhood-holdings-api-openapi.yml",
-    "robinhood-market-data-api-openapi.yml",
-    "robinhood-orders-api-openapi.yml",
-    "robinhood-trading-pairs-api-openapi.yml"
+    "_original/robinhood-crypto-trading-openapi.yml"
   ],
   "outputs": [
     "robinhood-account-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "robinhood-crypto-trading-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "robinhood-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robinhood-holdings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robinhood-market-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robinhood-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robinhood-trading-pairs-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
