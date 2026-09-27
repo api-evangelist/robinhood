@@ -68,7 +68,7 @@ tags:
 - Trading
 - Brokerage
 - Investing
-- Financial-Services
+- Financial Services
 - Crypto
 tags_raw:
 - Company
@@ -79,6 +79,7 @@ tags_raw:
 - Investing
 - Financial Services
 - Crypto
+- Financial-Services
 apis:
 - aid: robinhood:robinhood-account-api
   name: Robinhood Account API

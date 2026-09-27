@@ -93,31 +93,6 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   schemas:
-    BestBidAskList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Quote'
-    EstimatedPrice:
-      type: object
-      properties:
-        symbol:
-          type: string
-        side:
-          type: string
-        price:
-          type: string
-        quantity:
-          type: string
-        bid_inclusive_of_sell_spread:
-          type: string
-        ask_inclusive_of_buy_spread:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
     Quote:
       type: object
       properties:
@@ -143,6 +118,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EstimatedPrice'
+    BestBidAskList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Quote'
+    EstimatedPrice:
+      type: object
+      properties:
+        symbol:
+          type: string
+        side:
+          type: string
+        price:
+          type: string
+        quantity:
+          type: string
+        bid_inclusive_of_sell_spread:
+          type: string
+        ask_inclusive_of_buy_spread:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
   responses:
     RateLimited:
       description: Too many requests.

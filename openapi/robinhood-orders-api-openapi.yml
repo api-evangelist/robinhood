@@ -176,29 +176,6 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   schemas:
-    Execution:
-      type: object
-      properties:
-        effective_price:
-          type: string
-        quantity:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    StopLossOrderConfig:
-      type: object
-      properties:
-        asset_quantity:
-          type: string
-        quote_amount:
-          type: string
-        stop_price:
-          type: string
-        time_in_force:
-          type: string
-          enum:
-          - gtc
     LimitOrderConfig:
       type: object
       properties:
@@ -212,19 +189,57 @@ components:
           type: string
           enum:
           - gtc
-    MarketOrderConfig:
+    Execution:
       type: object
       properties:
-        asset_quantity:
+        effective_price:
           type: string
-    StopLimitOrderConfig:
+        quantity:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    OrderRequest:
+      type: object
+      required:
+      - client_order_id
+      - side
+      - type
+      - symbol
+      properties:
+        client_order_id:
+          type: string
+          format: uuid
+          description: Client-supplied idempotency key; a repeat with the same value returns the original order.
+        side:
+          type: string
+          enum:
+          - buy
+          - sell
+        type:
+          type: string
+          enum:
+          - market
+          - limit
+          - stop_loss
+          - stop_limit
+        symbol:
+          type: string
+          example: BTC-USD
+        market_order_config:
+          $ref: '#/components/schemas/MarketOrderConfig'
+        limit_order_config:
+          $ref: '#/components/schemas/LimitOrderConfig'
+        stop_loss_order_config:
+          $ref: '#/components/schemas/StopLossOrderConfig'
+        stop_limit_order_config:
+          $ref: '#/components/schemas/StopLimitOrderConfig'
+    StopLossOrderConfig:
       type: object
       properties:
         asset_quantity:
           type: string
         quote_amount:
-          type: string
-        limit_price:
           type: string
         stop_price:
           type: string
@@ -232,6 +247,24 @@ components:
           type: string
           enum:
           - gtc
+    OrderList:
+      type: object
+      properties:
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    MarketOrderConfig:
+      type: object
+      properties:
+        asset_quantity:
+          type: string
     Order:
       type: object
       properties:
@@ -280,54 +313,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Execution'
-    OrderRequest:
-      type: object
-      required:
-      - client_order_id
-      - side
-      - type
-      - symbol
-      properties:
-        client_order_id:
-          type: string
-          format: uuid
-          description: Client-supplied idempotency key; a repeat with the same value returns the original order.
-        side:
-          type: string
-          enum:
-          - buy
-          - sell
-        type:
-          type: string
-          enum:
-          - market
-          - limit
-          - stop_loss
-          - stop_limit
-        symbol:
-          type: string
-          example: BTC-USD
-        market_order_config:
-          $ref: '#/components/schemas/MarketOrderConfig'
-        limit_order_config:
-          $ref: '#/components/schemas/LimitOrderConfig'
-        stop_loss_order_config:
-          $ref: '#/components/schemas/StopLossOrderConfig'
-        stop_limit_order_config:
-          $ref: '#/components/schemas/StopLimitOrderConfig'
-    OrderList:
+    StopLimitOrderConfig:
       type: object
       properties:
-        next:
+        asset_quantity:
           type: string
-          nullable: true
-        previous:
+        quote_amount:
           type: string
-          nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
+        limit_price:
+          type: string
+        stop_price:
+          type: string
+        time_in_force:
+          type: string
+          enum:
+          - gtc
   responses:
     NotFound:
       description: Resource not found.
