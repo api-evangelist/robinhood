@@ -189,51 +189,21 @@ components:
           type: string
           enum:
           - gtc
-    Execution:
+    StopLimitOrderConfig:
       type: object
       properties:
-        effective_price:
+        asset_quantity:
           type: string
-        quantity:
+        quote_amount:
           type: string
-        timestamp:
+        limit_price:
           type: string
-          format: date-time
-    OrderRequest:
-      type: object
-      required:
-      - client_order_id
-      - side
-      - type
-      - symbol
-      properties:
-        client_order_id:
+        stop_price:
           type: string
-          format: uuid
-          description: Client-supplied idempotency key; a repeat with the same value returns the original order.
-        side:
+        time_in_force:
           type: string
           enum:
-          - buy
-          - sell
-        type:
-          type: string
-          enum:
-          - market
-          - limit
-          - stop_loss
-          - stop_limit
-        symbol:
-          type: string
-          example: BTC-USD
-        market_order_config:
-          $ref: '#/components/schemas/MarketOrderConfig'
-        limit_order_config:
-          $ref: '#/components/schemas/LimitOrderConfig'
-        stop_loss_order_config:
-          $ref: '#/components/schemas/StopLossOrderConfig'
-        stop_limit_order_config:
-          $ref: '#/components/schemas/StopLimitOrderConfig'
+          - gtc
     StopLossOrderConfig:
       type: object
       properties:
@@ -260,11 +230,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Order'
-    MarketOrderConfig:
-      type: object
-      properties:
-        asset_quantity:
-          type: string
     Order:
       type: object
       properties:
@@ -313,26 +278,57 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Execution'
-    StopLimitOrderConfig:
+    Execution:
+      type: object
+      properties:
+        effective_price:
+          type: string
+        quantity:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    MarketOrderConfig:
       type: object
       properties:
         asset_quantity:
           type: string
-        quote_amount:
+    OrderRequest:
+      type: object
+      required:
+      - client_order_id
+      - side
+      - type
+      - symbol
+      properties:
+        client_order_id:
           type: string
-        limit_price:
-          type: string
-        stop_price:
-          type: string
-        time_in_force:
+          format: uuid
+          description: Client-supplied idempotency key; a repeat with the same value returns the original order.
+        side:
           type: string
           enum:
-          - gtc
+          - buy
+          - sell
+        type:
+          type: string
+          enum:
+          - market
+          - limit
+          - stop_loss
+          - stop_limit
+        symbol:
+          type: string
+          example: BTC-USD
+        market_order_config:
+          $ref: '#/components/schemas/MarketOrderConfig'
+        limit_order_config:
+          $ref: '#/components/schemas/LimitOrderConfig'
+        stop_loss_order_config:
+          $ref: '#/components/schemas/StopLossOrderConfig'
+        stop_limit_order_config:
+          $ref: '#/components/schemas/StopLimitOrderConfig'
   responses:
-    NotFound:
-      description: Resource not found.
-    RateLimited:
-      description: Too many requests.
     MissingHeaders:
       description: Request missing required headers (x-api-key, x-signature, x-timestamp).
       content:
@@ -342,6 +338,10 @@ components:
           example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
     Unauthorized:
       description: Invalid or expired credentials / signature.
+    RateLimited:
+      description: Too many requests.
+    NotFound:
+      description: Resource not found.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

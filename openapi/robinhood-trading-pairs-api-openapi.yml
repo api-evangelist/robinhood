@@ -61,6 +61,8 @@ components:
   responses:
     RateLimited:
       description: Too many requests.
+    Unauthorized:
+      description: Invalid or expired credentials / signature.
     MissingHeaders:
       description: Request missing required headers (x-api-key, x-signature, x-timestamp).
       content:
@@ -68,8 +70,6 @@ components:
           schema:
             type: string
           example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
-    Unauthorized:
-      description: Invalid or expired credentials / signature.
   schemas:
     TradingPairList:
       type: object

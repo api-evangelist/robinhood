@@ -92,6 +92,18 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
+  responses:
+    RateLimited:
+      description: Too many requests.
+    Unauthorized:
+      description: Invalid or expired credentials / signature.
+    MissingHeaders:
+      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
   schemas:
     Quote:
       type: object
@@ -111,13 +123,6 @@ components:
         timestamp:
           type: string
           format: date-time
-    EstimatedPriceList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/EstimatedPrice'
     BestBidAskList:
       type: object
       properties:
@@ -125,6 +130,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Quote'
+    EstimatedPriceList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/EstimatedPrice'
     EstimatedPrice:
       type: object
       properties:
@@ -143,18 +155,6 @@ components:
         timestamp:
           type: string
           format: date-time
-  responses:
-    RateLimited:
-      description: Too many requests.
-    MissingHeaders:
-      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
-      content:
-        text/plain:
-          schema:
-            type: string
-          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
-    Unauthorized:
-      description: Invalid or expired credentials / signature.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
