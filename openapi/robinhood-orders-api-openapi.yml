@@ -189,21 +189,6 @@ components:
           type: string
           enum:
           - gtc
-    StopLimitOrderConfig:
-      type: object
-      properties:
-        asset_quantity:
-          type: string
-        quote_amount:
-          type: string
-        limit_price:
-          type: string
-        stop_price:
-          type: string
-        time_in_force:
-          type: string
-          enum:
-          - gtc
     StopLossOrderConfig:
       type: object
       properties:
@@ -217,19 +202,6 @@ components:
           type: string
           enum:
           - gtc
-    OrderList:
-      type: object
-      properties:
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
     Order:
       type: object
       properties:
@@ -278,16 +250,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Execution'
-    Execution:
+    OrderList:
       type: object
       properties:
-        effective_price:
+        next:
           type: string
-        quantity:
+          nullable: true
+        previous:
           type: string
-        timestamp:
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    StopLimitOrderConfig:
+      type: object
+      properties:
+        asset_quantity:
           type: string
-          format: date-time
+        quote_amount:
+          type: string
+        limit_price:
+          type: string
+        stop_price:
+          type: string
+        time_in_force:
+          type: string
+          enum:
+          - gtc
     MarketOrderConfig:
       type: object
       properties:
@@ -328,6 +318,16 @@ components:
           $ref: '#/components/schemas/StopLossOrderConfig'
         stop_limit_order_config:
           $ref: '#/components/schemas/StopLimitOrderConfig'
+    Execution:
+      type: object
+      properties:
+        effective_price:
+          type: string
+        quantity:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
   responses:
     MissingHeaders:
       description: Request missing required headers (x-api-key, x-signature, x-timestamp).

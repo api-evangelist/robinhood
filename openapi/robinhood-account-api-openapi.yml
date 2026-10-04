@@ -39,6 +39,18 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
+  responses:
+    RateLimited:
+      description: Too many requests.
+    Unauthorized:
+      description: Invalid or expired credentials / signature.
+    MissingHeaders:
+      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
   schemas:
     Account:
       type: object
@@ -55,18 +67,6 @@ components:
           type: string
         buying_power_currency:
           type: string
-  responses:
-    RateLimited:
-      description: Too many requests.
-    Unauthorized:
-      description: Invalid or expired credentials / signature.
-    MissingHeaders:
-      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
-      content:
-        text/plain:
-          schema:
-            type: string
-          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
