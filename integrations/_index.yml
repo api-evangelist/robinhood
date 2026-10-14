@@ -27,7 +27,7 @@
     - j. providing transfer services for crypto-assets on behalf of clients
     matched_domain: robinhood.com
     detected_by: sweep-crypto.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: robinhood-nydfs-new-york
@@ -48,6 +48,6 @@
     evidence: https://robinhood.com/us/en/support/articles/crypto-licenses/
     matched_by: verified-legal-name
     detected_by: sweep-crypto.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
