@@ -40,10 +40,10 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   responses:
-    RateLimited:
-      description: Too many requests.
     Unauthorized:
       description: Invalid or expired credentials / signature.
+    RateLimited:
+      description: Too many requests.
     MissingHeaders:
       description: Request missing required headers (x-api-key, x-signature, x-timestamp).
       content:

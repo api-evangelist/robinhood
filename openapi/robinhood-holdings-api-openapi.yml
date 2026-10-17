@@ -58,30 +58,7 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
-  responses:
-    Unauthorized:
-      description: Invalid or expired credentials / signature.
-    MissingHeaders:
-      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
-      content:
-        text/plain:
-          schema:
-            type: string
-          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
-    RateLimited:
-      description: Too many requests.
   schemas:
-    Holding:
-      type: object
-      properties:
-        account_number:
-          type: string
-        asset_code:
-          type: string
-        total_quantity:
-          type: string
-        quantity_available_for_trading:
-          type: string
     HoldingList:
       type: object
       properties:
@@ -95,6 +72,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Holding'
+    Holding:
+      type: object
+      properties:
+        account_number:
+          type: string
+        asset_code:
+          type: string
+        total_quantity:
+          type: string
+        quantity_available_for_trading:
+          type: string
+  responses:
+    Unauthorized:
+      description: Invalid or expired credentials / signature.
+    RateLimited:
+      description: Too many requests.
+    MissingHeaders:
+      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

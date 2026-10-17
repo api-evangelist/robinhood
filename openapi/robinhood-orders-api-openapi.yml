@@ -175,8 +175,22 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+    Unauthorized:
+      description: Invalid or expired credentials / signature.
+    RateLimited:
+      description: Too many requests.
+    MissingHeaders:
+      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
   schemas:
-    LimitOrderConfig:
+    StopLimitOrderConfig:
       type: object
       properties:
         asset_quantity:
@@ -184,6 +198,8 @@ components:
         quote_amount:
           type: string
         limit_price:
+          type: string
+        stop_price:
           type: string
         time_in_force:
           type: string
@@ -202,6 +218,16 @@ components:
           type: string
           enum:
           - gtc
+    Execution:
+      type: object
+      properties:
+        effective_price:
+          type: string
+        quantity:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
     Order:
       type: object
       properties:
@@ -250,20 +276,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Execution'
-    OrderList:
-      type: object
-      properties:
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-    StopLimitOrderConfig:
+    LimitOrderConfig:
       type: object
       properties:
         asset_quantity:
@@ -272,17 +285,10 @@ components:
           type: string
         limit_price:
           type: string
-        stop_price:
-          type: string
         time_in_force:
           type: string
           enum:
           - gtc
-    MarketOrderConfig:
-      type: object
-      properties:
-        asset_quantity:
-          type: string
     OrderRequest:
       type: object
       required:
@@ -318,30 +324,24 @@ components:
           $ref: '#/components/schemas/StopLossOrderConfig'
         stop_limit_order_config:
           $ref: '#/components/schemas/StopLimitOrderConfig'
-    Execution:
+    MarketOrderConfig:
       type: object
       properties:
-        effective_price:
+        asset_quantity:
           type: string
-        quantity:
+    OrderList:
+      type: object
+      properties:
+        next:
           type: string
-        timestamp:
+          nullable: true
+        previous:
           type: string
-          format: date-time
-  responses:
-    MissingHeaders:
-      description: Request missing required headers (x-api-key, x-signature, x-timestamp).
-      content:
-        text/plain:
-          schema:
-            type: string
-          example: 'Request missing required headers. Required headers: x-api-key, x-signature, x-timestamp. Please refer to API documentation for more information.'
-    Unauthorized:
-      description: Invalid or expired credentials / signature.
-    RateLimited:
-      description: Too many requests.
-    NotFound:
-      description: Resource not found.
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
