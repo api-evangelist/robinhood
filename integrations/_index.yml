@@ -51,3 +51,36 @@
     detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
+- slug: robinhood-sec-investment-adviser-registration
+  label: SEC (investment adviser registration)
+  partner_name: SEC (investment adviser registration)
+  category: Investment adviser
+  type: contract
+  channel: regulator-register
+  evidence: https://adviserinfo.sec.gov/firm/summary/323736
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: SEC Investment Adviser Public Disclosure (IAPD compilation feed, Form ADV Part 1A)
+    spec_file: null
+    standard: Investment Advisers Act of 1940 (SEC Form ADV)
+    role: sec-registered-investment-adviser
+    registered_name: ROBINHOOD ASSET MANAGEMENT, LLC
+    business_name: ROBINHOOD ASSET MANAGEMENT
+    register_id: CRD 323736
+    sec_file_number: 801-127371
+    registration_status: APPROVED
+    registered_since: '2025-01-14'
+    main_office: MENLO PARK, CA, United States
+    matched_domain: robinhood.com
+    matched_by: domain
+    identity_source: registrant's own Form ADV Item 1.I website address (no lookup)
+    custody_of_client_assets: true
+    signal_note: 'participation only: SEC registration is not a certification; firm type, custody and office are
+      context, never counted; regulatory AUM is not recorded (breadth is not credit)'
+    detected_by: sweep-asset-management.py
+    detected: '2026-10-18'
+    other_registrations:
+    - ROBINHOOD VENTURES DE, LLC (CRD 339165)
+  status: not-a-workflow
+  arazzo: null
